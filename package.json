@@ -1,0 +1,13 @@
+{
+  "name": "eat",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "@tsconfig/node20": "^1.0.1",
+    "@types/node": "^20.3.1",
+    "@vue/tsconfig": "^0.4.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "~5.0.4",
+    "tsx": "^3.12.7"
+  }
+}

@@ -1,0 +1,1 @@
+export { default as UTable } from './u-table.vue'
