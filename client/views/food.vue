@@ -15,13 +15,7 @@
       <v-card-title>{{ title }}</v-card-title>
       <v-card-text>
         <v-text-field label="名称" v-model="formData.name" />
-        <v-select
-          label="类别"
-          :items="items"
-          item-value="id"
-          item-title="name"
-          v-model="formData.foodTypeId"
-        />
+        <v-select label="类别" :items="items" v-model="formData.foodType" />
       </v-card-text>
 
       <v-card-actions>
@@ -42,8 +36,7 @@ import { watch } from 'vue'
 const initial = {
   name: '',
   id: '',
-  foodTypeName: '',
-  foodTypeId: ''
+  foodType: ''
 }
 
 const formData = reactive({
@@ -60,9 +53,9 @@ const columns = [
 
 const items = shallowRef<any[]>([])
 const getItems = async () => {
-  const { data } = await http.get('/food/type')
+  const { data } = await http.get<any[]>('/food/type')
 
-  items.value = data
+  items.value = data.map(item => item.name)
 }
 
 getItems()

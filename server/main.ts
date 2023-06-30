@@ -1,22 +1,11 @@
 import Fastify from 'fastify'
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient({})
 
 const fastify = Fastify({
   logger: true
 })
-
-enum PriceType {
-  /** 一般餐食 */
-  normal = 'normal',
-  /** 中等 */
-  medium = 'medium',
-  /** 大餐 */
-  large = 'large',
-  /** 豪华餐 */
-  luxury = 'luxury'
-}
 
 fastify.register(
   (app, _, done) => {
@@ -129,7 +118,7 @@ fastify.register(
     })
 
     app.post<{
-      Body: { name: string; foodTypeName: string; foodTypeId: number }
+      Body: { name: string; foodType: string }
     }>('/food', async (req, res) => {
       const item = await prisma.food.findFirst({
         where: {
@@ -149,7 +138,7 @@ fastify.register(
     })
 
     app.put<{
-      Body: { name: string; foodTypeName: string; foodTypeId: number }
+      Body: { name: string; foodType: string }
       Params: {
         id: string
       }

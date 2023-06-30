@@ -7,6 +7,8 @@ import { createVuetify } from 'vuetify'
 
 const app = createApp(App)
 
+app.config.globalProperties.c = console
+
 const vuetify = createVuetify()
 
 app.use(vuetify).use(router)
